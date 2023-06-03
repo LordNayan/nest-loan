@@ -1,9 +1,8 @@
 {
   "name": "nest-loan",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
+  "description": "Its a simple loan app built on top of NestJS",
+  "author": "Nayan Lakhwani",
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
