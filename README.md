@@ -16,6 +16,7 @@ Its a simple loan app built on top of NestJS.
 
 **Package Manager:** pnpm
 
+**Versions:** node v18.12.1 (npm v8.19.2) , pnpm 8.6.0
 
 
 
