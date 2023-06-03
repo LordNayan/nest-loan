@@ -130,7 +130,7 @@ To run tests, run the following command
   pnpm test:cov
 ```
 
-![App Screenshot](https://drive.google.com/file/d/1yXV0a6C2E5S9mmuu-2gtzAJzSQtNzrD5/view?usp=sharing)
+![Unit Test](https://github.com/LordNayan/nest-loan/assets/51285263/9e0c578f-0cf4-48be-85e4-c5b55522949c)
 
 ```bash
   e2e test:
@@ -138,7 +138,7 @@ To run tests, run the following command
   pnpm test:e2e
 ```
 
-![App Screenshot](https://drive.google.com/file/d/15DhVW6eCRsx0vhFCCzLE0jLKNfnKJGUI/view?usp=sharing)
+![E2E Tests](https://github.com/LordNayan/nest-loan/assets/51285263/5599a37f-6d9c-4f30-b92c-1ff0e3821eb5)
 
 
 ## Support
