@@ -28,7 +28,7 @@ export class LoanService {
     payload: CreateLoanDto,
   ): Promise<CreateLoanResponseDto> {
     const loan: Loan = new Loan();
-    const userId = this.contextProvider.get('userId') as number;
+    const userId = this.contextProvider.get('userId') as string;
 
     const { amount, term } = payload;
 
@@ -56,7 +56,7 @@ export class LoanService {
     return this.helper.createReturnValue(repaymentData);
   }
 
-  public async approveLoan(loanId: string): Promise<Loan> {
+  public async approveLoan(loanId: string): Promise<Partial<Loan>> {
     const loanData = await this.loanRepository.findOne({
       where: {
         id: loanId,
@@ -73,11 +73,11 @@ export class LoanService {
     return this.loanRepository.save(loanData);
   }
 
-  public async getLoans(): Promise<User> {
+  public async getLoans(): Promise<Partial<User>> {
     try {
       const userData = await this.userRepository.findOneOrFail({
         where: {
-          id: this.contextProvider.get('userId') as number,
+          id: this.contextProvider.get('userId') as string,
         },
         relations: ['loans'],
       });
@@ -92,7 +92,7 @@ export class LoanService {
       const loanData = await this.loanRepository.findOneOrFail({
         where: {
           id: loanId,
-          user: this.contextProvider.get('userId') as number,
+          user: this.contextProvider.get('userId') as string,
         },
         relations: ['repayments'],
       });

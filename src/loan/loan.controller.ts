@@ -58,7 +58,7 @@ export class LoanController {
     example: '219e9770-7cad-4e73-9b50-9c3501d856ec',
   })
   @Post('/approveLoan/:loanId')
-  async approveLoan(@Param('loanId') loanId): Promise<Loan> {
+  async approveLoan(@Param('loanId') loanId): Promise<Partial<Loan>> {
     return this.loanService.approveLoan(loanId);
   }
 
@@ -72,7 +72,7 @@ export class LoanController {
     description: `Request payload is not correct`,
   })
   @Get('/')
-  async getLoans(): Promise<User> {
+  async getLoans(): Promise<Partial<User>> {
     return this.loanService.getLoans();
   }
 

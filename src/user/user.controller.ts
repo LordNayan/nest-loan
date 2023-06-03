@@ -26,7 +26,7 @@ export class UserController {
     type: CreateUserDto,
   })
   @ApiCreatedResponse({
-    description: `User Created Succesfully`,
+    description: `User Created Successfully`,
   })
   @ApiBadRequestResponse({
     description: `Request payload is not correct`,
@@ -36,7 +36,7 @@ export class UserController {
     @Body() createUserDto: CreateUserDto,
   ): Promise<CreateUserResponseDto> {
     const data = await this.userService.createUser(createUserDto);
-    return { message: 'User Created Succesfully', ...data };
+    return { message: 'User Created Successfully', ...data };
   }
 
   @ApiOperation({ summary: 'Login with username and password.' })
@@ -44,7 +44,7 @@ export class UserController {
     type: LoginDto,
   })
   @ApiCreatedResponse({
-    description: `User Logged-In Succesfully`,
+    description: `User Logged-In Successfully`,
   })
   @ApiBadRequestResponse({
     description: `Request payload is not correct`,
@@ -52,6 +52,6 @@ export class UserController {
   @Post('/login')
   async login(@Body() loginDto: LoginDto): Promise<LoginResponseDto> {
     const token = await this.userService.login(loginDto);
-    return { message: 'User Logged-In Succesfully', token };
+    return { message: 'User Logged-In Successfully', token };
   }
 }
