@@ -1,7 +1,7 @@
 import { LoanStatus, RepaymentStatus } from '@common/enums/loan.enum';
 import { ApiProperty } from '@nestjs/swagger';
 import { Repayment } from '@src/database/entities/repayment.entity';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
 export class CreateLoanDto {
   @ApiProperty({
@@ -10,6 +10,7 @@ export class CreateLoanDto {
   })
   @IsNotEmpty()
   @IsNumber()
+  @IsPositive()
   amount: number;
 
   @ApiProperty({
@@ -18,6 +19,7 @@ export class CreateLoanDto {
   })
   @IsNotEmpty()
   @IsNumber()
+  @IsPositive()
   term: number;
 }
 

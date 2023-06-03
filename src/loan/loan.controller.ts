@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { LoanService } from '@loan/loan.service';
 import {
   ApiBody,
@@ -16,6 +24,7 @@ import {
 } from '@loan/loan.dto';
 import { Loan } from '@src/database/entities/loan.entity';
 import { User } from '@src/database/entities/user.entity';
+import { Response } from 'express';
 
 @ApiTags('loan')
 @Controller('loan')
@@ -58,8 +67,13 @@ export class LoanController {
     example: '219e9770-7cad-4e73-9b50-9c3501d856ec',
   })
   @Post('/approveLoan/:loanId')
-  async approveLoan(@Param('loanId') loanId): Promise<Partial<Loan>> {
-    return this.loanService.approveLoan(loanId);
+  async approveLoan(
+    @Param('loanId') loanId,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<Partial<Loan>> {
+    const result = await this.loanService.approveLoan(loanId);
+    response.status(HttpStatus.OK).send(result);
+    return;
   }
 
   @ApiOperation({ summary: 'Get all loans associated to a user' })
@@ -114,7 +128,10 @@ export class LoanController {
   @Post('/:repaymentId')
   async payInstallment(
     @Param('repaymentId') repaymentId,
+    @Res({ passthrough: true }) response: Response,
   ): Promise<RepaymentPaidResponse> {
-    return this.loanService.payInstallment(repaymentId);
+    const result = await this.loanService.payInstallment(repaymentId);
+    response.status(HttpStatus.OK).send(result);
+    return;
   }
 }

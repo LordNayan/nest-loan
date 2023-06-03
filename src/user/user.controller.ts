@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Res, HttpStatus } from '@nestjs/common';
 import { UserService } from '@user/user.service';
 import {
   CreateUserDto,
@@ -13,7 +13,9 @@ import {
   ApiBearerAuth,
   ApiBadRequestResponse,
   ApiCreatedResponse,
+  ApiOkResponse,
 } from '@nestjs/swagger';
+import { Response } from 'express';
 
 @ApiTags('user')
 @Controller('user')
@@ -43,15 +45,21 @@ export class UserController {
   @ApiBody({
     type: LoginDto,
   })
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     description: `User Logged-In Successfully`,
   })
   @ApiBadRequestResponse({
     description: `Request payload is not correct`,
   })
   @Post('/login')
-  async login(@Body() loginDto: LoginDto): Promise<LoginResponseDto> {
+  async login(
+    @Body() loginDto: LoginDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<LoginResponseDto> {
     const token = await this.userService.login(loginDto);
-    return { message: 'User Logged-In Successfully', token };
+    response
+      .status(HttpStatus.OK)
+      .send({ message: 'User Logged-In Successfully', token });
+    return;
   }
 }

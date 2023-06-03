@@ -123,4 +123,17 @@ export const RepaymentLoanPendingMock = {
   },
 };
 
+export const RepaymentLoanMock = {
+  id: '1',
+  status: RepaymentStatus.Pending,
+  amount: 3333.33,
+  dueDate: new Date().toISOString().replace('T', ' ').slice(0, -1),
+  loan: {
+    id: 'loanId',
+    amount: 10000,
+    term: 3,
+    status: LoanStatus.Pending,
+  },
+};
+
 export const RepaymentMockArray = [repaymentPaidResponseMock.repayment];
