@@ -7,6 +7,7 @@ import {
   LoginUserMock,
   LoginUserResponseMock,
 } from './mockData/user.mockData';
+import { Response } from 'express';
 
 describe('UserController', () => {
   let userController: UserController;
@@ -49,8 +50,11 @@ describe('UserController', () => {
   describe('login', () => {
     it('should log in the user successfully', async () => {
       jest.spyOn(userService, 'login').mockResolvedValue('');
-
-      const result = await userController.login(LoginUserMock);
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        send: jest.fn(),
+      } as unknown as Response;
+      const result = await userController.login(LoginUserMock, res);
 
       expect(userService.login).toHaveBeenCalledWith(LoginUserMock);
       expect(result).toEqual({

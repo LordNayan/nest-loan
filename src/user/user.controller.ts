@@ -60,6 +60,6 @@ export class UserController {
     response
       .status(HttpStatus.OK)
       .send({ message: 'User Logged-In Successfully', token });
-    return;
+    return { message: 'User Logged-In Successfully', token };
   }
 }

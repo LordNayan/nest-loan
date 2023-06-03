@@ -73,7 +73,7 @@ export class LoanController {
   ): Promise<Partial<Loan>> {
     const result = await this.loanService.approveLoan(loanId);
     response.status(HttpStatus.OK).send(result);
-    return;
+    return result;
   }
 
   @ApiOperation({ summary: 'Get all loans associated to a user' })
@@ -132,6 +132,6 @@ export class LoanController {
   ): Promise<RepaymentPaidResponse> {
     const result = await this.loanService.payInstallment(repaymentId);
     response.status(HttpStatus.OK).send(result);
-    return;
+    return result;
   }
 }

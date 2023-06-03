@@ -16,6 +16,7 @@ import { ContextProvider } from '@common/services/http-context.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repayment } from '@database/entities/repayment.entity';
 import { Loan } from '@database/entities/loan.entity';
+import { Response, response } from 'express';
 
 describe('LoanController', () => {
   let loanController: LoanController;
@@ -24,6 +25,10 @@ describe('LoanController', () => {
   let loanRepository: Repository<Loan>;
   let repaymentRepository: Repository<Repayment>;
   let loanHelper: LoanHelper;
+  const res = {
+    status: jest.fn().mockReturnThis(),
+    send: jest.fn(),
+  } as unknown as Response;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -78,7 +83,7 @@ describe('LoanController', () => {
         .spyOn(loanService, 'approveLoan')
         .mockResolvedValue(ApproveLoanResponseMock);
 
-      const result = await loanController.approveLoan(loanId);
+      const result = await loanController.approveLoan(loanId, res);
 
       expect(loanService.approveLoan).toHaveBeenCalledWith(loanId);
       expect(result).toEqual(ApproveLoanResponseMock);
@@ -121,7 +126,7 @@ describe('LoanController', () => {
         .spyOn(loanService, 'payInstallment')
         .mockResolvedValue(repaymentPaidResponseMock);
 
-      const result = await loanController.payInstallment(repaymentId);
+      const result = await loanController.payInstallment(repaymentId, res);
 
       expect(loanService.payInstallment).toHaveBeenCalledWith(repaymentId);
       expect(result).toEqual(repaymentPaidResponseMock);
