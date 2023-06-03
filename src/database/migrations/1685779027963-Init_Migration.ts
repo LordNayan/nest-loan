@@ -20,10 +20,10 @@ export class InitMigration1685779027963 implements MigrationInterface {
       `ALTER TABLE "loan" ADD CONSTRAINT "FK_ef7a63b4c4f0edd90e389edb103" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `INSERT INTO "user" ("userName", "password", "isAdmin", "createdAt") VALUES ('admin','123456',true, DEFAULT)`,
+      `INSERT INTO "user" ("userName", "password", "isAdmin", "createdAt") VALUES ('admin','$2b$10$6SxcbS2C3i0Tpc3xroLNz.F45upPho9NxNRleyOo59dArK3yBcFHi',true, DEFAULT)`,
     );
     await queryRunner.query(
-      `INSERT INTO "user" ("userName", "password", "isAdmin", "createdAt") VALUES ('nayan','123456',false, DEFAULT)`,
+      `INSERT INTO "user" ("userName", "password", "isAdmin", "createdAt") VALUES ('nayan','$2b$10$6SxcbS2C3i0Tpc3xroLNz.F45upPho9NxNRleyOo59dArK3yBcFHi',false, DEFAULT)`,
     );
   }
 
