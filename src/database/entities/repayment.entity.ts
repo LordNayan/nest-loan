@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { Loan } from './loan.entity';
+import { Loan } from '@database/entities/loan.entity';
 import { RepaymentStatus } from '@common/enums/loan.enum';
 
 @Entity()

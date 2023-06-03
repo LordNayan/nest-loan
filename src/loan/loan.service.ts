@@ -3,13 +3,13 @@ import {
   CreateLoanDto,
   CreateLoanResponseDto,
   RepaymentPaidResponse,
-} from './loan.dto';
+} from '@loan/loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Repayment } from '@src/database/entities/repayment.entity';
 import { User } from '@src/database/entities/user.entity';
 import { ContextProvider } from '@common/services/http-context.service';
-import { LoanHelper } from './loan.helper';
+import { LoanHelper } from '@loan/loan.helper';
 import { Errors } from '@common/enums/error.enum';
 import { LoanStatus, RepaymentStatus } from '@common/enums/loan.enum';
 import { BadRequestException, NotFoundException } from '@nestjs/common';

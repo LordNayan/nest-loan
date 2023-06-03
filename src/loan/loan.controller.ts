@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { LoanService } from './loan.service';
+import { LoanService } from '@loan/loan.service';
 import {
   ApiBody,
   ApiOperation,
@@ -13,7 +13,7 @@ import {
   CreateLoanDto,
   CreateLoanResponseDto,
   RepaymentPaidResponse,
-} from './loan.dto';
+} from '@loan/loan.dto';
 import { Loan } from '@src/database/entities/loan.entity';
 import { User } from '@src/database/entities/user.entity';
 

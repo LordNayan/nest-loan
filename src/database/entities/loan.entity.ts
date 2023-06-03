@@ -7,9 +7,9 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { User } from './user.entity';
+import { User } from '@database/entities/user.entity';
 import { LoanStatus } from '@common/enums/loan.enum';
-import { Repayment } from './repayment.entity';
+import { Repayment } from '@database/entities/repayment.entity';
 
 @Entity()
 export class Loan {

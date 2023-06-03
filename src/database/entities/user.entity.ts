@@ -6,7 +6,7 @@ import {
   BaseEntity,
   OneToMany,
 } from 'typeorm';
-import { Loan } from './loan.entity';
+import { Loan } from '@database/entities/loan.entity';
 
 @Entity()
 export class User extends BaseEntity {

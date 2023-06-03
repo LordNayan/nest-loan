@@ -7,7 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@common/services/typeorm.service';
 import { EnvironmentVariables } from '@common/config/env.validation';
 import { transformAndValidateSync } from 'class-transformer-validator';
-import { UserModule } from './user/user.module';
+import { UserModule } from '@user/user.module';
 import { CommonModule } from '@common/common.module';
 import { AuthMiddlware } from '@common/middlewares/auth.middleware';
 import { CheckAdminMiddlware } from '@common/middlewares/check-admin.middleware';

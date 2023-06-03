@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto, LoginDto } from './user.dto';
+import { CreateUserDto, LoginDto } from '@user/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '@src/database/entities/user.entity';
 import { Repository } from 'typeorm';
@@ -31,9 +31,7 @@ export class UserService {
       const user = await this.repository.findOneOrFail({
         where: { userName },
       });
-
       await isValidUser(password, user.password);
-
       const token = await this.authService.generateToken({
         userId: user.id,
         userName: user.userName,

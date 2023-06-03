@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '@common/services/auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { ContextProvider } from '@common/services/http-context.service';
 import { TypeOrmModule } from '@nestjs/typeorm';

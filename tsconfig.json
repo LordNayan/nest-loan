@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@loan/*": ["src/loan/*"],
-      "@user/*": ["user/*"],
+      "@user/*": ["src/user/*"],
+      "@database/*": ["src/database/*"],
       "@common/*": ["src/common/*"],
       "@src/*": ["src/*"],
     }
