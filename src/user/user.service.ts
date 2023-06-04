@@ -14,15 +14,22 @@ export class UserService {
   constructor(private authService: AuthService, private helper: UserHelper) {}
 
   public async createUser(body: CreateUserDto): Promise<CreateUserDto> {
-    const user: User = new User();
+    try {
+      const user: User = new User();
 
-    user.userName = body.userName;
-    user.password = await this.helper.hashPass(body.password);
-    user.isAdmin = body.isAdmin;
+      user.userName = body.userName;
+      user.password = await this.helper.hashPass(body.password);
+      user.isAdmin = body.isAdmin;
 
-    await this.repository.save(user);
-    delete body.password;
-    return { ...body };
+      await this.repository.save(user);
+      delete body.password;
+      return { ...body };
+    } catch (error) {
+      if (error.message.indexOf('duplicate') != -1) {
+        throw new BadRequestException(Errors.USERNAME_ALREADY_EXISTS);
+      }
+      throw new BadRequestException();
+    }
   }
 
   public async login(body: LoginDto): Promise<string> {

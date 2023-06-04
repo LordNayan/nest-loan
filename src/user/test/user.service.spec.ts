@@ -18,7 +18,7 @@ describe('UserService', () => {
   let userRepository: Repository<User>;
   let authService: AuthService;
   let userHelper: UserHelper;
-
+  const userRepoSaveMock = jest.fn();
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -41,7 +41,7 @@ describe('UserService', () => {
           useValue: {
             findOne: jest.fn(),
             findOneOrFail: jest.fn(),
-            save: jest.fn(),
+            save: userRepoSaveMock,
           },
         },
       ],
@@ -61,6 +61,26 @@ describe('UserService', () => {
 
       expect(userRepository.save).toHaveBeenCalledWith(expect.any(User));
       expect(result).toEqual(CreateUserServiceResponseMock);
+    });
+
+    it('should throw error for non-unique username', async () => {
+      jest.spyOn(userHelper, 'hashPass').mockResolvedValue('hashedPassword');
+      userRepoSaveMock.mockRejectedValue(new Error('duplicate'));
+
+      await expect(userService.createUser(CreateUserMock)).rejects.toThrow(
+        BadRequestException,
+      );
+      expect(userRepository.save).toHaveBeenCalledWith(expect.any(User));
+    });
+
+    it('should throw error for any other failure', async () => {
+      jest.spyOn(userHelper, 'hashPass').mockResolvedValue('hashedPassword');
+      userRepoSaveMock.mockRejectedValue(new Error());
+
+      await expect(userService.createUser(CreateUserMock)).rejects.toThrow(
+        BadRequestException,
+      );
+      expect(userRepository.save).toHaveBeenCalledWith(expect.any(User));
     });
   });
 

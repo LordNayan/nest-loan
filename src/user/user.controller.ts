@@ -57,9 +57,7 @@ export class UserController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<LoginResponseDto> {
     const token = await this.userService.login(loginDto);
-    response
-      .status(HttpStatus.OK)
-      .send({ message: 'User Logged-In Successfully', token });
+    response.status(HttpStatus.OK);
     return { message: 'User Logged-In Successfully', token };
   }
 }

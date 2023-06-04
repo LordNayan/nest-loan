@@ -57,20 +57,24 @@ export class LoanService {
   }
 
   public async approveLoan(loanId: string): Promise<Partial<Loan>> {
-    const loanData = await this.loanRepository.findOne({
-      where: {
-        id: loanId,
-      },
-    });
-    if (!loanData) throw new BadRequestException(Errors.LOAN_NOT_FOUND);
-    if (
-      loanData.status === LoanStatus.Approved ||
-      loanData.status === LoanStatus.Paid
-    )
-      throw new BadRequestException(Errors.INVALID_ID);
+    try {
+      const loanData = await this.loanRepository.findOne({
+        where: {
+          id: loanId,
+        },
+      });
+      if (!loanData) throw new BadRequestException(Errors.LOAN_NOT_FOUND);
+      if (
+        loanData.status === LoanStatus.Approved ||
+        loanData.status === LoanStatus.Paid
+      )
+        throw new BadRequestException(Errors.INVALID_ID);
 
-    loanData.status = LoanStatus.Approved;
-    return this.loanRepository.save(loanData);
+      loanData.status = LoanStatus.Approved;
+      return this.loanRepository.save(loanData);
+    } catch (error) {
+      throw new BadRequestException(Errors.INVALID_ID);
+    }
   }
 
   public async getLoans(): Promise<Partial<User>> {
@@ -105,23 +109,27 @@ export class LoanService {
   public async payInstallment(
     repaymentId: string,
   ): Promise<RepaymentPaidResponse> {
-    const repayment = await this.repaymentRepository.findOne({
-      where: {
-        id: repaymentId,
-      },
-      relations: ['loan'],
-    });
-    if (!repayment || repayment.status === RepaymentStatus.Paid)
+    try {
+      const repayment = await this.repaymentRepository.findOne({
+        where: {
+          id: repaymentId,
+        },
+        relations: ['loan'],
+      });
+      if (!repayment || repayment.status === RepaymentStatus.Paid)
+        throw new BadRequestException(Errors.INVALID_ID);
+
+      if (repayment.loan.status === LoanStatus.Pending)
+        throw new BadRequestException(Errors.LOAN_NOT_APPROVED);
+
+      repayment.status = RepaymentStatus.Paid;
+      await this.repaymentRepository.save(repayment);
+
+      const loanPaid = await this.helper.isLoanPaid(repayment.loan);
+      if (loanPaid) repayment.loan.status = LoanStatus.Paid;
+      return { repayment };
+    } catch (error) {
       throw new BadRequestException(Errors.INVALID_ID);
-
-    if (repayment.loan.status === LoanStatus.Pending)
-      throw new BadRequestException(Errors.LOAN_NOT_APPROVED);
-
-    repayment.status = RepaymentStatus.Paid;
-    await this.repaymentRepository.save(repayment);
-
-    const loanPaid = await this.helper.isLoanPaid(repayment.loan);
-    if (loanPaid) repayment.loan.status = LoanStatus.Paid;
-    return { repayment };
+    }
   }
 }

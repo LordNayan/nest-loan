@@ -72,7 +72,7 @@ export class LoanController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<Partial<Loan>> {
     const result = await this.loanService.approveLoan(loanId);
-    response.status(HttpStatus.OK).send(result);
+    response.status(HttpStatus.OK);
     return result;
   }
 
@@ -131,7 +131,7 @@ export class LoanController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<RepaymentPaidResponse> {
     const result = await this.loanService.payInstallment(repaymentId);
-    response.status(HttpStatus.OK).send(result);
+    response.status(HttpStatus.OK);
     return result;
   }
 }
