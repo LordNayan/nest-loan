@@ -1,40 +1,39 @@
 #!/bin/bash
 
+# Print prerequisites
+echo "Prerequisites:"
+echo "- Node.js v18 or higher"
+echo "- npm v8 or higher"
+echo "- pnpm v8 or higher"
+echo "- PostgreSQL"
+
+# Function to check if a command is installed
+check_dependency() {
+  local command_name=$1
+  local dependency_name=$2
+
+  if command -v "$command_name" >/dev/null 2>&1; then
+    echo "$dependency_name found."
+  else
+    echo "$dependency_name not found. Please install $dependency_name."
+    echo "You can install $dependency_name using the following command:"
+    echo "For macOS: brew install $command_name"
+    echo "For Linux: sudo apt-get install $command_name"
+    exit 1
+  fi
+}
+
 # Check if Node is installed
-node_installed=$(node --version)
-if [[ -z "$node_installed" ]]; then
-  echo "Node is not installed. Please install Node.js version 18 or later."
-  echo "You can install Node.js using a package manager like Homebrew:"
-  echo "brew install node"
-  exit 1
-fi
+check_dependency node "Node.js"
 
 # Check if npm is installed
-npm_installed=$(npm --version)
-if [[ -z "$npm_installed" ]]; then
-  echo "npm is not installed. Please install npm version 8 or later."
-  echo "You can install npm using the following command:"
-  echo "npm install -g npm@8"
-  exit 1
-fi
+check_dependency npm "npm"
 
 # Check if pnpm is installed
-pnpm_installed=$(pnpm --version)
-if [[ -z "$pnpm_installed" ]]; then
-  echo "pnpm is not installed. Please install pnpm version 8 or later."
-  echo "You can install pnpm using the following command:"
-  echo "npm install -g pnpm@8"
-  exit 1
-fi
+check_dependency pnpm "pnpm"
 
 # Check if PostgreSQL is installed
-psql_installed=$(command -v psql)
-if [[ -z "$psql_installed" ]]; then
-  echo "PostgreSQL is not installed. Please install PostgreSQL."
-  echo "You can download and install PostgreSQL from the official website:"
-  echo "https://www.postgresql.org/download/"
-  exit 1
-fi
+check_dependency psql "PostgreSQL"
 
 # Check if .env file is updated
 read -p "Have you made changes to .env file and added your database details? (yes/no): " env_updated
@@ -49,9 +48,9 @@ pnpm install
 # Run database migrations
 pnpm run migration:run
 
+# Start the application
+pnpm run start
+
 # Print final message
 echo "Let's do some banking. Do you want a loan?"
 exit 0
-
-# Start the application
-pnpm run start
