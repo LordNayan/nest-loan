@@ -19,6 +19,30 @@ Its a simple loan app built on top of NestJS.
 **Versions:** node v18.12.1 (npm v8.19.2) , pnpm 8.6.0
 
 
+## Why this tech stack?
+
+  NestJS - It was chosen due to the below reasons,
+
+      > Typescript support - Typescript makes life a lot easier with strict type 
+        checking on variables and functions. NestJS is officially supported 
+        by the core typescript team and provides out of the box support for latest features.
+
+      > Modular Architecture Pattern - Its easily scalable and easily understandable with 
+        its module driven approach
+
+      > Wide support for packages - Jest for testing, Swagger for documentaion,
+        JWT for security etc. integrates with NestJS with an ease.
+      
+      > TypeORM support 
+
+  PostgreSQL - It was chosen due to the below reasons,
+
+      > Data is structured.
+
+      > Data is predictable, and is expected to undergo minimal or gradual changes over time.
+
+      > It's a finance-related project, so there will be a lot of transactional queries, 
+        which are any day better suited for a SQL database.
 
 
 ## Run Locally
