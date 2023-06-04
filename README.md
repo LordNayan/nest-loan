@@ -79,7 +79,7 @@ Install node and pnpm **(Optional)**
 ```bash
 After you have installed node,
 
-RUN: npm install -g pnpm
+RUN: sudo npm install -g pnpm
 ```
 
 ### 1. Bash Script Way
@@ -93,19 +93,19 @@ RUN: ./setup.sh
 Install dependencies
 
 ```bash
-pnpm install
+RUN: pnpm install
 ```
 
 Run Migrations
 
 ```bash
-pnpm migration:run
+RUN: pnpm migration:run
 ```
 
 Start the server
 
 ```bash
-pnpm run start
+RUN: pnpm run start
 ```
 
 Open Swagger
