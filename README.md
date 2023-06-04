@@ -165,7 +165,7 @@ To run tests, run the following command
 ```bash
   unit test:
 
-  pnpm test:cov
+  RUN: pnpm test:cov
 ```
 
 ![Unit Test](https://github.com/LordNayan/nest-loan/assets/51285263/9e0c578f-0cf4-48be-85e4-c5b55522949c)
@@ -173,7 +173,7 @@ To run tests, run the following command
 ```bash
   e2e test:
   
-  pnpm test:e2e
+  RUN: pnpm test:e2e
 ```
 
 ![E2E Tests](https://github.com/LordNayan/nest-loan/assets/51285263/5599a37f-6d9c-4f30-b92c-1ff0e3821eb5)
