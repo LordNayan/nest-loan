@@ -17,7 +17,7 @@ check_dependency() {
   else
     echo "$dependency_name not found. Please install $dependency_name."
     echo "You can install $dependency_name using the following command:"
-    if [[ "$command_name" == "postgresql" ]]; then
+    if [[ "$command_name" == "psql" ]]; then
       echo "For macOS: brew install postgresql@15"
     else
       echo "For macOS: brew install $command_name"
