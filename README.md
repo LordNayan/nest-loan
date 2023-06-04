@@ -58,11 +58,11 @@ After you have installed node,
 RUN: npm install -g pnpm
 ```
 
-### Bash Script Way
+### 1. Bash Script Way
 ```bash
 RUN: ./setup.sh 
 ```
-### Normal Way
+### 2. Normal Way
 
 
 
