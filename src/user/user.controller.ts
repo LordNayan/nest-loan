@@ -5,7 +5,7 @@ import {
   CreateUserResponseDto,
   LoginDto,
   LoginResponseDto,
-} from '@user/user.dto';
+} from '@user/dto/user.dto';
 import {
   ApiBody,
   ApiOperation,

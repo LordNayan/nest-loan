@@ -6,7 +6,7 @@ import { User } from '@src/database/entities/user.entity';
 import { Repayment } from '@src/database/entities/repayment.entity';
 import { ContextProvider } from '@common/services/http-context.service';
 import { LoanHelper } from '@loan/loan.helper';
-import { CreateLoanDto, CreateLoanResponseDto } from '@loan/loan.dto';
+import { CreateLoanDto, CreateLoanResponseDto } from '@loan/dto/loan.dto';
 import {
   GenerateRepaymentsResponse,
   LoanDataMock,

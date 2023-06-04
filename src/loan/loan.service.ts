@@ -3,7 +3,7 @@ import {
   CreateLoanDto,
   CreateLoanResponseDto,
   RepaymentPaidResponse,
-} from '@loan/loan.dto';
+} from '@loan/dto/loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Repayment } from '@src/database/entities/repayment.entity';

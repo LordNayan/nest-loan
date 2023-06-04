@@ -1,7 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from '@common/config/configuration';
-import { RouterModule } from '@nestjs/core';
 import { LoanModule } from '@loan/loan.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@common/services/typeorm.service';
@@ -14,16 +13,6 @@ import { CheckAdminMiddlware } from '@common/middlewares/check-admin.middleware'
 
 @Module({
   imports: [
-    RouterModule.register([
-      {
-        path: '/',
-        module: LoanModule,
-      },
-      {
-        path: '/',
-        module: UserModule,
-      },
-    ]),
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     CommonModule,

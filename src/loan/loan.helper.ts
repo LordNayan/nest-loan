@@ -1,4 +1,4 @@
-import { CreateLoanResponseDto } from '@loan/loan.dto';
+import { CreateLoanResponseDto } from '@loan/dto/loan.dto';
 import { Repayment } from '@src/database/entities/repayment.entity';
 import { LoanStatus, RepaymentStatus } from '@common/enums/loan.enum';
 import { InjectRepository } from '@nestjs/typeorm';

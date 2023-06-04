@@ -21,7 +21,7 @@ import {
   CreateLoanDto,
   CreateLoanResponseDto,
   RepaymentPaidResponse,
-} from '@loan/loan.dto';
+} from '@loan/dto/loan.dto';
 import { Loan } from '@src/database/entities/loan.entity';
 import { User } from '@src/database/entities/user.entity';
 import { Response } from 'express';
