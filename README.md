@@ -3,8 +3,12 @@
 
 Its a simple loan app built on top of NestJS.
 
+## Prerequisite
 
-
+- Node.js v18 or higher
+- npm v8 or higher
+- pnpm v8 or higher
+- PostgreSQL
 
 ## Tech Stack
 
