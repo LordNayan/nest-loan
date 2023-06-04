@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migration:generate": "pnpm build && pnpm typeorm:cli-dev migration:generate -n",
     "migration:run": "pnpm build && pnpm typeorm:cli-dev migration:run",
-    "migration:revert": "yarn build && yarn typeorm:cli-dev migration:revert",
+    "migration:revert": "pnpm build && pnpm typeorm:cli-dev migration:revert",
     "typeorm:cli-dev": "ts-node ./node_modules/typeorm/cli -f src/database/ormConfig"
   },
   "dependencies": {
