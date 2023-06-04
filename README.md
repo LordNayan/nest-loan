@@ -49,37 +49,47 @@ DATABASE_PASSWORD=
 DATABASE_PORT=5432
 ```
 
+
 Install node and pnpm **(Optional)**
 
 ```bash
-  After you have installed node,
+After you have installed node,
 
-  RUN: npm install -g pnpm
+RUN: npm install -g pnpm
 ```
+
+### Bash Script Way
+```bash
+RUN: ./setup.sh 
+```
+### Normal Way
+
+
 
 Install dependencies
 
 ```bash
-  pnpm install
+pnpm install
 ```
 
 Run Migrations
 
 ```bash
-  pnpm migration:run
+pnpm migration:run
 ```
 
 Start the server
 
 ```bash
-  pnpm run start
+pnpm run start
 ```
 
 Open Swagger
 
 ```bash
-  localhost:3000/docs
+localhost:3000/docs
 ```
+
 
 
 ## Features
