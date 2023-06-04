@@ -1,35 +1,40 @@
 #!/bin/bash
 
-# Check if Node.js is installed
-if ! command -v node &> /dev/null; then
-  echo "Node.js is not installed. Installing Node.js version 18..."
-  brew install node@18
+# Check if Node, npm, pnpm, and PostgreSQL are installed and configured
+echo "Checking prerequisites..."
+echo "Node.js version 18 or higher"
+echo "npm version 8 or higher"
+echo "pnpm version 8 or higher"
+echo "PostgreSQL"
+
+read -p "Are all the prerequisites installed and configured? (y/n): " prerequisitesChoice
+
+if [ "$prerequisitesChoice" != "y" ]; then
+  echo "Prerequisites not satisfied. Exiting..."
+  exit 0
 fi
 
-# Check if pnpm is installed
-if ! command -v pnpm &> /dev/null; then
-  echo "pnpm is not installed. Installing pnpm version 8..."
-  npm install -g pnpm@8
+# Check if .env file is updated with database details
+echo ""
+echo "Have you made changes to .env file and added your database details?"
+read -p "If yes, enter 'y' to proceed or 'n' to quit: " envChoice
+
+if [ "$envChoice" != "y" ]; then
+  echo "Please update the .env file with your database details. Exiting..."
+  exit 0
 fi
 
-# Install project dependencies
-echo "Installing project dependencies..."
+# Install dependencies
+echo ""
+echo "Installing dependencies..."
 pnpm i
 
-# Check if PostgreSQL is installed
-if ! command -v psql &> /dev/null; then
-  echo "PostgreSQL is not installed."
-  echo "Please install PostgreSQL and try running the script again."
-  exit 1
-fi
-
 # Run database migrations
+echo ""
 echo "Running database migrations..."
-pnpm run migration:run
+pnpm migration:run
 
 # Start the application
-echo "Starting the application..."
+echo ""
+echo "Do you want a loan?. Let's do some banking."
 pnpm run start
-
-# Print message
-echo "Let's do some banking. Do you want a loan?"
