@@ -9,35 +9,30 @@ echo "- PostgreSQL"
 
 # Function to check if a command is installed
 check_dependency() {
-  local command_name=$1
-  local dependency_name=$2
+  local dependency_name=$1
+  local install_url=$2
 
-  if command -v "$command_name" >/dev/null 2>&1; then
+  if command -v "$dependency_name" >/dev/null 2>&1; then
     echo "$dependency_name found."
   else
     echo "$dependency_name not found. Please install $dependency_name."
-    echo "You can install $dependency_name using the following command:"
-    if [[ "$command_name" == "psql" ]]; then
-      echo "For macOS: brew install postgresql@15"
-    else
-      echo "For macOS: brew install $command_name"
-    fi
-    echo "For Linux: sudo apt-get install $command_name"
+    echo "You can download and install $dependency_name from the following URL:"
+    echo "$install_url"
     exit 1
   fi
 }
 
 # Check if Node is installed
-check_dependency node "Node.js"
+check_dependency "node" "https://nodejs.org/"
 
 # Check if npm is installed
-check_dependency npm "npm"
+check_dependency "npm" "https://www.npmjs.com/"
 
 # Check if pnpm is installed
-check_dependency pnpm "pnpm"
+check_dependency "pnpm" "https://pnpm.io/"
 
 # Check if PostgreSQL is installed
-check_dependency psql "PostgreSQL"
+check_dependency "psql" "https://www.postgresql.org/"
 
 # Check if .env file is updated
 read -p "Have you made changes to .env file and added your database details? (yes/no): " env_updated
@@ -52,9 +47,9 @@ pnpm install
 # Run database migrations
 pnpm run migration:run
 
-# Start the application
-pnpm run start
-
 # Print final message
 echo "Let's do some banking. Do you want a loan?"
 exit 0
+
+# Start the application
+pnpm run start
