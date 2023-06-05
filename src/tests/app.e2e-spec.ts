@@ -243,7 +243,7 @@ describe('Login, Create User, Create Loan, Get Loan (e2e)', () => {
     expect(response.body.message).toBe(Errors.LOAN_NOT_FOUND);
   });
 
-  describe('POST /loan/approveLoan', () => {
+  describe('POST /loan/approve', () => {
     it('should mark a loan as approved', async () => {
       const repaymentId = '456';
       getContextMock.mockResolvedValue(DefaultUserId);
@@ -252,7 +252,7 @@ describe('Login, Create User, Create Loan, Get Loan (e2e)', () => {
       loanSaveMock.mockResolvedValue(LoanDataMock);
 
       const response = await request(server)
-        .post(`/loan/approveLoan/${repaymentId}`)
+        .post(`/loan/approve/${repaymentId}`)
         .auth(authToken, { type: 'bearer' })
         .expect(200);
 

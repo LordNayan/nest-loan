@@ -66,7 +66,7 @@ export class LoanController {
     required: true,
     example: '219e9770-7cad-4e73-9b50-9c3501d856ec',
   })
-  @Post('/approveLoan/:loanId')
+  @Post('/approve/:loanId')
   async approveLoan(
     @Param('loanId') loanId,
     @Res({ passthrough: true }) response: Response,

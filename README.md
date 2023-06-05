@@ -153,7 +153,7 @@ localhost:3000/docs
 - Admin APIs: (admin token required)
   --
   1. Create User - /user/create
-  2. Approve Loan - /loan/approveLoan
+  2. Approve Loan - /loan/approve
 
 
 

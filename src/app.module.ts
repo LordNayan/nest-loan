@@ -32,6 +32,6 @@ export class AppModule implements NestModule {
     consumer
       .apply(CheckAdminMiddlware)
       .exclude('/user/login')
-      .forRoutes('/user', '/loan/approveLoan');
+      .forRoutes('/user', '/loan/approve');
   }
 }
