@@ -248,7 +248,7 @@ describe('LoanService', () => {
       });
       expect(saveRepaymentSpy).toHaveBeenCalledWith({
         ...RepaymentMock,
-        status: RepaymentStatus.Paid,
+        status: RepaymentStatus.PAID,
       });
       expect(isLoanPaidSpy).toHaveBeenCalledWith(RepaymentMock.loan);
       expect(result).toEqual({ repayment: RepaymentMock });
@@ -309,7 +309,7 @@ describe('LoanService', () => {
       // Mock the necessary dependencies and their methods
       const repaymentId = '1';
       const RepaymentPendingMock = { ...RepaymentMock };
-      RepaymentPendingMock.status = RepaymentStatus.Pending;
+      RepaymentPendingMock.status = RepaymentStatus.PENDING;
       const findOneRepaymentSpy = jest
         .spyOn(repaymentRepository, 'findOne')
         .mockResolvedValue(RepaymentPendingMock as Repayment);
@@ -326,7 +326,7 @@ describe('LoanService', () => {
       });
       expect(saveRepaymentSpy).toHaveBeenCalledWith({
         ...RepaymentPendingMock,
-        status: RepaymentStatus.Paid,
+        status: RepaymentStatus.PAID,
       });
       expect(isLoanPaidSpy).toHaveBeenCalledWith(RepaymentPendingMock.loan);
       expect(result).toEqual({ repayment: RepaymentPendingMock });

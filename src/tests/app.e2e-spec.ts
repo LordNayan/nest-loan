@@ -256,7 +256,7 @@ describe('Login, Create User, Create Loan, Get Loan (e2e)', () => {
         .auth(authToken, { type: 'bearer' })
         .expect(200);
 
-      expect(response.body).toHaveProperty('status', LoanStatus.Approved);
+      expect(response.body).toHaveProperty('status', LoanStatus.APPROVED);
     });
   });
 
@@ -264,7 +264,7 @@ describe('Login, Create User, Create Loan, Get Loan (e2e)', () => {
     it('should mark a repayment as paid', async () => {
       const repaymentId = '1';
       const approvedLoanData = { ...RepaymentLoanMock };
-      approvedLoanData.loan.status = LoanStatus.Approved;
+      approvedLoanData.loan.status = LoanStatus.APPROVED;
       repaymentFindOneMock.mockResolvedValue(approvedLoanData);
       repaymentSaveMock.mockResolvedValue(approvedLoanData);
       loanfindOneOrFailMock.mockResolvedValue(LoanDataMock);
@@ -278,7 +278,7 @@ describe('Login, Create User, Create Loan, Get Loan (e2e)', () => {
       expect(response.body.repayment).toHaveProperty('id', repaymentId);
       expect(response.body.repayment).toHaveProperty(
         'status',
-        RepaymentStatus.Paid,
+        RepaymentStatus.PAID,
       );
     });
   });

@@ -25,7 +25,7 @@ export class Loan {
   @Column({
     type: 'enum',
     enum: LoanStatus,
-    default: LoanStatus.Pending,
+    default: LoanStatus.PENDING,
   })
   public status: string;
 

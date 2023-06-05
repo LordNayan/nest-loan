@@ -65,12 +65,12 @@ export class LoanService {
       });
       if (!loanData) throw new BadRequestException(Errors.LOAN_NOT_FOUND);
       if (
-        loanData.status === LoanStatus.Approved ||
-        loanData.status === LoanStatus.Paid
+        loanData.status === LoanStatus.APPROVED ||
+        loanData.status === LoanStatus.PAID
       )
         throw new BadRequestException(Errors.INVALID_ID);
 
-      loanData.status = LoanStatus.Approved;
+      loanData.status = LoanStatus.APPROVED;
       return this.loanRepository.save(loanData);
     } catch (error) {
       throw new BadRequestException(Errors.INVALID_ID);
@@ -116,17 +116,17 @@ export class LoanService {
         },
         relations: ['loan'],
       });
-      if (!repayment || repayment.status === RepaymentStatus.Paid)
+      if (!repayment || repayment.status === RepaymentStatus.PAID)
         throw new BadRequestException(Errors.INVALID_ID);
 
-      if (repayment.loan.status === LoanStatus.Pending)
+      if (repayment.loan.status === LoanStatus.PENDING)
         throw new BadRequestException(Errors.LOAN_NOT_APPROVED);
 
-      repayment.status = RepaymentStatus.Paid;
+      repayment.status = RepaymentStatus.PAID;
       await this.repaymentRepository.save(repayment);
 
       const loanPaid = await this.helper.isLoanPaid(repayment.loan);
-      if (loanPaid) repayment.loan.status = LoanStatus.Paid;
+      if (loanPaid) repayment.loan.status = LoanStatus.PAID;
       return { repayment };
     } catch (error) {
       throw new BadRequestException(Errors.INVALID_ID);

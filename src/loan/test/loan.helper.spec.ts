@@ -67,7 +67,7 @@ describe('LoanHelper', () => {
     it('should return false if there are pending repayments', async () => {
       const pendingLoanData = { ...LoanDataMock };
       const repaymentArray = RepaymentMockArray;
-      repaymentArray[0].status = RepaymentStatus.Pending;
+      repaymentArray[0].status = RepaymentStatus.PENDING;
       pendingLoanData.repayments = repaymentArray;
       jest
         .spyOn(loanRepository, 'findOneOrFail')

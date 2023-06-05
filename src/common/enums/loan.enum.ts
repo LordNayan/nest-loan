@@ -1,10 +1,10 @@
 export enum LoanStatus {
-  Pending = 'PENDING',
-  Approved = 'APPROVED',
-  Paid = 'PAID',
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  PAID = 'PAID',
 }
 
 export enum RepaymentStatus {
-  Pending = 'PENDING',
-  Paid = 'PAID',
+  PENDING = 'PENDING',
+  PAID = 'PAID',
 }

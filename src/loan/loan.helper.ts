@@ -63,13 +63,13 @@ export class LoanHelper {
       relations: ['repayments'],
     });
     const pendingRepayments = loanData.repayments.find(
-      (rp) => rp.status === RepaymentStatus.Pending,
+      (rp) => rp.status === RepaymentStatus.PENDING,
     );
 
     if (pendingRepayments) {
       return false;
     }
-    loanData.status = LoanStatus.Paid;
+    loanData.status = LoanStatus.PAID;
 
     await this.loanRepository.save(loanData);
     return true;

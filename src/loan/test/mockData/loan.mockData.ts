@@ -11,12 +11,12 @@ export const loanResponseMock = {
   id: 'mock-id',
   term: 3,
   amount: 100,
-  status: LoanStatus.Pending,
+  status: LoanStatus.PENDING,
   repayments: [
     {
       amount: 100,
       dueDate: new Date(),
-      status: RepaymentStatus.Pending,
+      status: RepaymentStatus.PENDING,
     },
   ],
 } as Loan;
@@ -25,7 +25,7 @@ export const LoanDataMock: Loan = {
   id: 'loanId',
   amount: 10000,
   term: 3,
-  status: LoanStatus.Pending,
+  status: LoanStatus.PENDING,
   user: {
     id: 'userId',
     userName: 'testuser',
@@ -44,12 +44,12 @@ export const CreateLoanResponseMock = {
     id: 'mock-id',
     term: 3,
     amount: 100,
-    status: LoanStatus.Pending,
+    status: LoanStatus.PENDING,
     repayments: [
       {
         amount: 100,
         dueDate: new Date(),
-        status: RepaymentStatus.Pending,
+        status: RepaymentStatus.PENDING,
       },
     ],
   },
@@ -107,32 +107,32 @@ export const GenerateRepaymentsResponse = [{ amount: 100, date: new Date() }];
 
 export const RepaymentMock = {
   id: 'repaymentId',
-  status: RepaymentStatus.Pending,
+  status: RepaymentStatus.PENDING,
   loan: {
     id: 'loanId',
-    status: LoanStatus.Approved,
+    status: LoanStatus.APPROVED,
   },
 };
 
 export const RepaymentLoanPendingMock = {
   id: 'repaymentId',
-  status: RepaymentStatus.Pending,
+  status: RepaymentStatus.PENDING,
   loan: {
     id: 'loanId',
-    status: LoanStatus.Pending,
+    status: LoanStatus.PENDING,
   },
 };
 
 export const RepaymentLoanMock = {
   id: '1',
-  status: RepaymentStatus.Pending,
+  status: RepaymentStatus.PENDING,
   amount: 3333.33,
   dueDate: new Date().toISOString().replace('T', ' ').slice(0, -1),
   loan: {
     id: 'loanId',
     amount: 10000,
     term: 3,
-    status: LoanStatus.Pending,
+    status: LoanStatus.PENDING,
   },
 };
 

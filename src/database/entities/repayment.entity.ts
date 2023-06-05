@@ -23,7 +23,7 @@ export class Repayment {
   @Column({
     type: 'enum',
     enum: RepaymentStatus,
-    default: RepaymentStatus.Pending,
+    default: RepaymentStatus.PENDING,
   })
   public status: string;
 
