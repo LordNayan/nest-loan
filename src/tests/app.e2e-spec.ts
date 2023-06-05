@@ -11,7 +11,6 @@ import {
   LoanDataMock,
   RepaymentLoanMock,
   getLoansResponseMock,
-  repaymentPaidResponseMock,
 } from '@loan/test/mockData/loan.mockData';
 import { Errors } from '@common/enums/error.enum';
 import { LoanStatus, RepaymentStatus } from '@common/enums/loan.enum';

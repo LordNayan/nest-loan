@@ -50,9 +50,12 @@ export class LoanService {
       repayment.loan = loanData;
       repaymentsToSave.push(repayment);
     });
-    const repaymentData = await Promise.all([
-      ...repaymentsToSave.map((rp) => this.repaymentRepository.save(rp)),
-    ]);
+
+    const savePromises = repaymentsToSave.map((rp) =>
+      this.repaymentRepository.save(rp),
+    );
+    const repaymentData = await Promise.all(savePromises);
+
     return this.helper.createReturnValue(repaymentData);
   }
 
