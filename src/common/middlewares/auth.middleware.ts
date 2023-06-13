@@ -20,6 +20,7 @@ export class AuthMiddlware implements NestMiddleware {
       let token: string = req.headers['authorization'] as string;
       if (!token) {
         next(new UnauthorizedException(Errors.INVALID_TOKEN));
+        return;
       }
       token =
         token.indexOf('Bearer') !== -1 ? token.replace('Bearer ', '') : token;
