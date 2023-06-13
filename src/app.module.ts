@@ -10,6 +10,7 @@ import { UserModule } from '@user/user.module';
 import { CommonModule } from '@common/common.module';
 import { AuthMiddlware } from '@common/middlewares/auth.middleware';
 import { CheckAdminMiddlware } from '@common/middlewares/check-admin.middleware';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -25,13 +26,14 @@ import { CheckAdminMiddlware } from '@common/middlewares/check-admin.middleware'
       useValue: transformAndValidateSync(EnvironmentVariables, process.env),
     },
   ],
+  controllers: [AppController],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddlware).exclude('/user/login').forRoutes('*');
+    consumer.apply(AuthMiddlware).exclude('/', '/user/login').forRoutes('*');
     consumer
       .apply(CheckAdminMiddlware)
-      .exclude('/user/login')
+      .exclude('/', '/user/login')
       .forRoutes('/user', '/loan/approve');
   }
 }
